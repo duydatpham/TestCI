@@ -48,7 +48,14 @@ jobs:
       #     api_key: "1025176578:AAGTvesY3-NR-RlblqevmXIOMXxSoZPNHiQ"
       #     chat_id: "-403329421"
       #     message: "Test noti"
-
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Install npm dependencies
+        run: npm install
+      - name: Run build task
+        run: npm run build 
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.5
