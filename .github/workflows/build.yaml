@@ -41,3 +41,10 @@ jobs:
 
       - name: Verify
         run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Notify if new commits
+        if: ${{ true }}
+        uses: ivanmilov/telegram_notify_action@v1
+        with:
+          api_key: "bot1025176578:AAGTvesY3-NR-RlblqevmXIOMXxSoZPNHiQ"
+          chat_id: "-403329421"
+          message: "Test noti"
