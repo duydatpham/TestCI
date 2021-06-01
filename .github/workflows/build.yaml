@@ -12,6 +12,7 @@ jobs:
           hosts: 54.251.229.85
           user: deploy
           private_key: ${{ secrets.PRIVATE_SSH_KEY }}
+          known_hosts: StrictHostKeyChecking=no
           commands: |
             cd /opt/upbase/sme-utilities
             yarn migration:run
