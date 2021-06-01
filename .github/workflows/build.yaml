@@ -10,9 +10,11 @@ jobs:
         uses: docker://evaneos/ssh-action:0.1.0
         with:
           hosts: 54.251.229.85
-          user: deploy
+          user: ubuntu
           private_key: ${{ secrets.PRIVATE_SSH_KEY }}
           commands: |
+            sudo su
+            su deploy
             cd /opt/upbase/sme-utilities
             yarn migration:run
             git pull
