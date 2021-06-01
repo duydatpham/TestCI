@@ -20,7 +20,6 @@ jobs:
             if [[ $(yarn migration:run) == *"Done in"* ]]; then
               echo "It's there."
               echo "::set-output name=migrate_success::true" 1>&1
-              exit 1
             fi
 
             # git pull
