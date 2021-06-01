@@ -8,13 +8,14 @@ jobs:
     steps:
       - name: Run a command remotely
         id: migrate
-        uses: docker://evaneos/ssh-action:0.1.0
+        # uses: docker://evaneos/ssh-action:0.1.0
+        uses: JimCronqvist/action-ssh@master
         with:
-          hosts: 54.251.229.85
-          user: deploy
-          private_key: ${{ secrets.PRIVATE_SSH_KEY }}
-          known_hosts: StrictHostKeyChecking=no
-          commands: |
+          hosts: deploy@54.251.229.85
+          # user: deploy
+          privateKey: ${{ secrets.PRIVATE_SSH_KEY }}
+          # known_hosts: StrictHostKeyChecking=no
+          command: |
             cd /opt/upbase/sme-utilities
             if [[ $(yarn migration:run) == *"Done in"* ]]; then
               echo "It's there."
