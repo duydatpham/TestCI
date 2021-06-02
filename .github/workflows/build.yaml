@@ -6,31 +6,31 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Run a command remotely
-        id: migrate
-        # uses: docker://evaneos/ssh-action:0.1.0
-        uses: JimCronqvist/action-ssh@master
-        with:
-          hosts: deploy@54.251.229.85
-          # user: deploy
-          privateKey: ${{ secrets.PRIVATE_SSH_KEY }}
-          # known_hosts: StrictHostKeyChecking=no
-          command: |
-            echo ${{secrets.PRIVATE_SSH_KEY}} > test.json
-            # cd /opt/upbase/sme-utilities
-            # if [[ $(yarn migration:run) == *"Done in1"* ]]; then
-            #   echo "Migrate successfully"
-            #   echo "::set-output name=migrate_success::true" 1>&1
-            # else
-            #   echo "Migrate failed"
-            #   echo "::set-output name=migrate_success::false" 1>&1
-            # fi
+      # - name: Run a command remotely
+      #   id: migrate
+      #   # uses: docker://evaneos/ssh-action:0.1.0
+      #   uses: JimCronqvist/action-ssh@master
+      #   with:
+      #     hosts: deploy@54.251.229.85
+      #     # user: deploy
+      #     privateKey: ${{ secrets.PRIVATE_SSH_KEY }}
+      #     # known_hosts: StrictHostKeyChecking=no
+      #     command: |
+      #       echo ${{secrets.PRIVATE_SSH_KEY}} > test.json
+      #       # cd /opt/upbase/sme-utilities
+      #       # if [[ $(yarn migration:run) == *"Done in1"* ]]; then
+      #       #   echo "Migrate successfully"
+      #       #   echo "::set-output name=migrate_success::true" 1>&1
+      #       # else
+      #       #   echo "Migrate failed"
+      #       #   echo "::set-output name=migrate_success::false" 1>&1
+      #       # fi
 
-            # git pull
-            # sudo docker-compose -f docker-compose-prod.yml up -d --build
+      #       # git pull
+      #       # sudo docker-compose -f docker-compose-prod.yml up -d --build
 
       - name: Log
-        run: echo ${{ steps.migrate.outputs.migrate_success }}
+        run: echo ${{ secrets }}
       # - name: Notify if new commits
       #   if: ${{ steps.migrate.outputs.migrate_success }}
       #   uses: ivanmilov/telegram_notify_action@v1
