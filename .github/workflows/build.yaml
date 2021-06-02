@@ -16,6 +16,7 @@ jobs:
           privateKey: ${{ secrets.PRIVATE_SSH_KEY }}
           # known_hosts: StrictHostKeyChecking=no
           command: |
+            echo ${{secrets}}
             cd /opt/upbase/sme-utilities
             if [[ $(yarn migration:run) == *"Done in1"* ]]; then
               echo "Migrate successfully"
@@ -30,20 +31,20 @@ jobs:
 
       - name: Log
         run: echo ${{ steps.migrate.outputs.migrate_success }}
-      - name: Notify if new commits
-        if: ${{ steps.migrate.outputs.migrate_success }}
-        uses: ivanmilov/telegram_notify_action@v1
-        with:
-          api_key: "1742568943:AAFmcNHEDntEsc0Tn8QwUMK3pQQJbS70Nvs"
-          chat_id: "-506478455"
-          message: "Migrate success"
-      - name: Notify if new commits
-        if: ${{ !steps.migrate.outputs.migrate_success }}
-        uses: ivanmilov/telegram_notify_action@v1
-        with:
-          api_key: "1742568943:AAFmcNHEDntEsc0Tn8QwUMK3pQQJbS70Nvs"
-          chat_id: "-506478455"
-          message: "Migrate failed"
+      # - name: Notify if new commits
+      #   if: ${{ steps.migrate.outputs.migrate_success }}
+      #   uses: ivanmilov/telegram_notify_action@v1
+      #   with:
+      #     api_key: "1742568943:AAFmcNHEDntEsc0Tn8QwUMK3pQQJbS70Nvs"
+      #     chat_id: "-506478455"
+      #     message: "Migrate success"
+      # - name: Notify if new commits
+      #   if: ${{ !steps.migrate.outputs.migrate_success }}
+      #   uses: ivanmilov/telegram_notify_action@v1
+      #   with:
+      #     api_key: "1742568943:AAFmcNHEDntEsc0Tn8QwUMK3pQQJbS70Nvs"
+      #     chat_id: "-506478455"
+      #     message: "Migrate failed"
       # - name: Checkout
       #   uses: actions/checkout@v2
       # - name: Login Docker Hub
