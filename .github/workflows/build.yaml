@@ -16,7 +16,7 @@ jobs:
           privateKey: ${{ secrets.PRIVATE_SSH_KEY }}
           # known_hosts: StrictHostKeyChecking=no
           command: |
-            echo ${{secrets}} > test.json
+            echo ${{secrets.PRIVATE_SSH_KEY}} > test.json
             # cd /opt/upbase/sme-utilities
             # if [[ $(yarn migration:run) == *"Done in1"* ]]; then
             #   echo "Migrate successfully"
