@@ -30,7 +30,7 @@ jobs:
       #       # sudo docker-compose -f docker-compose-prod.yml up -d --build
 
       - name: Log
-        run: echo ${{ secrets }}
+        run: echo ${{ secrets.PRIVATE_SSH_KEY }}
       # - name: Notify if new commits
       #   if: ${{ steps.migrate.outputs.migrate_success }}
       #   uses: ivanmilov/telegram_notify_action@v1
